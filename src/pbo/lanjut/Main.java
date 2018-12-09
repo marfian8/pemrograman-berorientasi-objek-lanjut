@@ -14,6 +14,7 @@ import pbo.lanjut.pertemuan6.HelloThread;
 import pbo.lanjut.pertemuan6.ThreadNumber;
 import pbo.lanjut.pertemuan6.KittyThread;
 import pbo.lanjut.pertemuan6.NumberGenerator;
+import pbo.lanjut.pertemuan7.GreetClient;
 
 /**
  *
@@ -39,12 +40,29 @@ public class Main {
 //            System.out.println("Hello Kitty Thread.");
 //        }).start();
 //        multiple thread
-        NumberGenerator generator = new NumberGenerator(10, 100);
-        for (int i = 0; i < 3; i++) {
+//        NumberGenerator generator = new NumberGenerator(10, 100);
+//        for (int i = 0; i < 3; i++) {
 //            new Thread(new ThreadNumber("thread: " + i)).start();
-            new Thread(new ThreadNumber("Thread->" + i, generator)).start();
-        }
-        
+//            new Thread(new ThreadNumber("Thread->" + i, generator)).start();
+//        }
+        GreetClient client = new GreetClient();
+        client.startConnection("127.0.0.1", 6666);
+        String response = client.sendMessage("hello server");
+        String response1 = client.sendMessage("hai server");
+        String endMessage = client.sendMessage(".");
+        System.out.println("" + response);
+        System.out.println("" + response1);
+        System.out.println("" + endMessage);
+
+        GreetClient client1 = new GreetClient();
+        client1.startConnection("127.0.0.1", 6666);
+        response = client1.sendMessage("holla server");
+        response1 = client1.sendMessage("hoe server");
+        endMessage = client1.sendMessage(".");
+        System.out.println("" + response);
+        System.out.println("" + response1);
+        System.out.format("%s", endMessage);
+
     }
 
 }
